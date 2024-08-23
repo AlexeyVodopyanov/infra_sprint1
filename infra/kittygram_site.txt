@@ -1,0 +1,5 @@
+IP: 89.169.173.116;
+name_taski: https://alexey-taski.hopto.org/;
+name_kittygram: https://alexey-kittygram.hopto.org/;
+login: alexey;
+password: alexey;

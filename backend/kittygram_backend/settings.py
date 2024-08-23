@@ -1,13 +1,28 @@
 import os
 from pathlib import Path
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
+load_dotenv()
 
-DEBUG = True
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = []
+DEBUG = False
+
+ALLOWED_HOSTS = ['89.169.173.116', '127.0.0.1', 'localhost', 'alexey-kittygram.hopto.org']
+
+sentry_sdk.init(
+    dsn="https://3b276d1de914b243c67aebf6916b9e33@o4507811348611072.ingest.de.sentry.io/4507811352739920",
+    integrations=[
+        DjangoIntegration(),
+    ],
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -90,10 +105,13 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static_backend/'
+
+STATIC_ROOT = BASE_DIR / 'static_backend'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIA_ROOT = '/var/www/kittygram/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
