@@ -11,9 +11,9 @@ load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = False
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['89.169.173.116', '127.0.0.1', 'localhost', 'alexey-kittygram.hopto.org']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(', ')
 
 sentry_sdk.init(
     dsn="https://3b276d1de914b243c67aebf6916b9e33@o4507811348611072.ingest.de.sentry.io/4507811352739920",
