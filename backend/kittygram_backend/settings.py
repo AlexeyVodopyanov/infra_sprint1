@@ -1,19 +1,16 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv()
+SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = False
 
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(', ')
+ALLOWED_HOSTS = ['89.169.173.116', '127.0.0.1', 'localhost', 'alexey-kittygram.hopto.org']
 
 sentry_sdk.init(
     dsn="https://3b276d1de914b243c67aebf6916b9e33@o4507811348611072.ingest.de.sentry.io/4507811352739920",
